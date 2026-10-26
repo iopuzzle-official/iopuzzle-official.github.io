@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ioPUZZLE | True-STEM Learning: CBSE Science, Math, Coding & Edge-AI</title>
+  <meta name="description" content="Master CBSE Science and Mathematics alongside Python Coding, Physical Computing, and Edge-AI through interactive Input-Output Puzzles.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- MathJax for Textbook-Quality CBSE Equations -->
+  <script>
+    window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0b1120;
+      --bg-card: #1e293b;
+      --accent-blue: #38bdf8;
+      --accent-green: #4ade80;
+      --accent-yellow: #facc15;
+      --accent-pink: #f472b6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    /* Navbar */
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #334155;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent-blue); }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent-blue); }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 70px 5% 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .pill {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #38bdf8, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto 30px;
+    }
+    .cta-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #0f172a;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid #475569;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
+
+    /* True STEM 4-Pillar Banner */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1150px;
+      margin: 20px auto 60px;
+      padding: 0 5%;
+    }
+    .pillar-card {
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: 12px;
+      border-top: 4px solid var(--accent-blue);
+    }
+    .pillar-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .pillar-card p { font-size: 14px; color: var(--text-muted); }
+
+    /* Interactive Demo Section */
+    .section-wrap {
+      max-width: 1100px;
+      margin: 0 auto 70px;
+      padding: 0 5%;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    .section-title h2 { font-size: 32px; margin-bottom: 8px; }
+    .section-title p { color: var(--text-muted); }
+
+    .sim-container {
+      background: #131c31;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .code-area {
+      background: #090d16;
+      padding: 16px;
+      border-radius: 10px;
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      color: #a5f3fc;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+    .code-input {
+      background: #1e293b;
+      color: var(--accent-yellow);
+      border: 2px solid var(--accent-blue);
+      border-radius: 5px;
+      width: 55px;
+      text-align: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 3px;
+    }
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 18px 0;
+      flex-wrap: wrap;
+    }
+    input[type=range] { flex: 1; accent-color: var(--accent-blue); cursor: pointer; min-width: 200px; }
+    .status-box {
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    /* Grade Grid */
+    .grade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+    .grade-card {
+      background: var(--bg-card);
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 26px;
+      transition: border-color 0.2s;
+    }
+    .grade-card:hover { border-color: var(--accent-blue); }
+    .grade-tag {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-green);
+      letter-spacing: 0.5px;
+    }
+    .grade-card h3 { font-size: 22px; margin: 6px 0 12px; }
+    .grade-card ul { list-style: none; margin-bottom: 20px; }
+    .grade-card ul li {
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      padding-left: 18px;
+      position: relative;
+    }
+    .grade-card ul li::before {
+      content: "▹";
+      color: var(--accent-blue);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Founder / Trust Block (Crucial for Google AdSense E-E-A-T) */
+    .founder-box {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 35px;
+    }
+    .founder-box h3 { color: var(--accent-blue); margin-bottom: 10px; font-size: 24px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .badge-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid #475569;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #1e293b;
+      padding: 40px 5%;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    footer a { color: var(--accent-blue); text-decoration: none; margin: 0 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <a href="/" class="logo">io<span>PUZZLE</span></a>
+    <nav>
+      <a href="#simulator">Live Lab</a>
+      <a href="#curriculum">CBSE Grades 6–10</a>
+      <a href="#about">About Founder</a>
+      <a href="mailto:support@iopuzzle.com">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <span class="pill">🧩 Input-Output Puzzle • 100% True-STEM Portal</span>
+    <h1>Where CBSE <span>Science & Math</span> Power Real-World <span>Coding & AI</span></h1>
+    <p>Stop memorizing formulas blindly. Experience how every NCERT Science phenomenon and Math equation becomes Python code, sensor electronics, and Edge-AI engineering.</p>
+    <div class="cta-group">
+      <a href="#simulator" class="btn-primary">Try Live STEM Puzzle ↓</a>
+      <a href="#curriculum" class="btn-secondary">Explore Grade 6–10 Tracks</a>
+    </div>
+  </section>
+
+  <!-- 4 Pillars of True STEM -->
+  <section class="pillars">
+    <div class="pillar-card" style="border-color: var(--accent-pink);">
+      <h3>🔬 1. Science (The Input)</h3>
+      <p>Understand the real physical phenomenon—acoustics, kinematics, optics, thermodynamics, and bio-signals.</p>
+    </div>
+    <div class="pillar-card" style="border-color: var(--accent-yellow);">
+      <h3>📐 2. Math (The Bridge)</h3>
+      <p>Derive the exact CBSE mathematical formula that converts physical reality into measurable numbers.</p>
+    </div>
+    <div class="pillar-card" style="border-color: var(--accent-blue);">
+      <h3>💻 3. Coding (The Brain)</h3>
+      <p>Translate mathematical equations into clean Python & MicroPython algorithms right in your browser.</p>
+    </div>
+    <div class="pillar-card" style="border-color: var(--accent-green);">
+      <h3>⚙️ 4. Engineering (Output)</h3>
+      <p>Combine sensors, logic, and Edge-AI to solve real human challenges in healthcare, agriculture, and safety.</p>
+    </div>
+  </section>
+
+  <!-- Interactive STEM Widget -->
+  <section id="simulator" class="section-wrap">
+    <div class="section-title">
+      <h2>⚡ Experience a True-STEM Puzzle Right Now</h2>
+      <p>Module 1.1: Ultrasonic Smart Blind-Stick (Acoustics + Algebra + Python)</p>
+    </div>
+
+    <div class="sim-container">
+      <p style="margin-bottom: 12px; color: #cbd5e1;">
+        <b>The Challenge:</b> An ultrasonic sensor sends a sound pulse at $v = 0.034\text{ cm/}\mu\text{s}$. Because the sound travels <b>to the obstacle and back</b>, the total distance covered in echo time $t$ is $2d$. Using the CBSE speed formula:
+        $$d = \frac{v \times t}{2}$$
+        Fix the divisor in the Python code below so the blind stick triggers its vibration alarm accurately when an obstacle is closer than $50\text{ cm}$!
+      </p>
+
+      <div class="slider-row">
+        <label><b>📡 Sensor Echo Time ($t$):</b></label>
+        <input type="range" id="echoSlider" min="500" max="8000" step="100" value="4000" oninput="runSim()">
+        <span id="timeVal" style="color:var(--accent-blue); font-weight:800; font-family:monospace;">4000 µs</span>
+      </div>
+
+      <div class="code-area">
+        # 💻 Fix the Math Bug: Change 1 to 2 in the yellow box below!<br>
+        speed_cm_per_us = 0.034<br>
+        echo_time_us = <span id="codeTime">4000</span><br>
+        distance_cm = (speed_cm_per_us * echo_time_us) / <input class="code-input" id="divisor" type="number" value="1" oninput="runSim()"><br>
+        print("Obstacle Distance:", distance_cm, "cm")
+      </div>
+
+      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:15px;">
+        <span>📏 Real Physical Obstacle: <b id="realDist" style="color:var(--accent-green);">68.0 cm</b></span>
+        <span>🤖 Your Python Output: <b id="calcDist" style="color:var(--accent-yellow);">136.0 cm</b></span>
+      </div>
+
+      <div id="statusBox" class="status-box" style="background:#7f1d1d; color:#fecaca;">
+        ⚠️ MATH BUG! Sound travels there AND back. Change the divisor in the code from 1 to 2!
+      </div>
+    </div>
+  </section>
+
+  <!-- CBSE Parallel Curriculum -->
+  <section id="curriculum" class="section-wrap">
+    <div class="section-title">
+      <h2>📚 CBSE Parallel True-STEM Curriculum</h2>
+      <p>Master your school NCERT Science & Math syllabus while building real technology</p>
+    </div>
+
+    <div class="grade-grid">
+      <div class="grade-card">
+        <span class="grade-tag">Foundation Track</span>
+        <h3>Grade 6 & 7: Sensing & Energy</h3>
+        <ul>
+          <li><b>Science:</b> Motion, Light Shadows, Heat & Electric Circuits</li>
+          <li><b>Math:</b> Unit Conversions, Ratios, Linear Equations ($F = \frac{9}{5}C + 32$)</li>
+          <li><b>Coding:</b> Python Variables, `if/else` Logic & Loops</li>
+          <li><b>Tech Build:</b> Smart Vaccine Cold-Chain Monitor & Solar Streetlight</li>
+        </ul>
+      </div>
+
+      <div class="grade-card">
+        <span class="grade-tag">Core Engineering Track</span>
+        <h3>Grade 8 & 9: Forces, Waves & Motion</h3>
+        <ul>
+          <li><b>Science:</b> Force & Pressure, Sound Waves, Newton's Laws ($F=ma$)</li>
+          <li><b>Math:</b> Direct/Inverse Proportions, 3D Pythagoras, Slope Graphs</li>
+          <li><b>Coding:</b> Python Lists, Moving-Average Signal Filtering & Sensors</li>
+          <li><b>Tech Build:</b> Wearable Elderly Fall Detector & Drone Altimeter</li>
+        </ul>
+      </div>
+
+      <div class="grade-card">
+        <span class="grade-tag">Advanced Edge-AI Track</span>
+        <h3>Grade 10+: Electricity, Bio-Optics & AI</h3>
+        <ul>
+          <li><b>Science:</b> Ohm's Law ($V=IR$), Human Eye Bio-Potentials, Magnetism</li>
+          <li><b>Math:</b> Simultaneous Equations, Trigonometry & Euclidean Distance</li>
+          <li><b>Coding:</b> K-Nearest Neighbors (KNN) ML & Biosignal Velocity Gating</li>
+          <li><b>Tech Build:</b> Eye-Blink Assistive Communicator & EV Battery Guard</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Founder / E-E-A-T Trust Section -->
+  <section id="about" class="section-wrap">
+    <div class="founder-box">
+      <h3>Meet Your Mentor: Kunal Ambasta</h3>
+      <p style="color:#cbd5e1; margin-bottom:12px;">
+        <b>ioPUZZLE</b> was founded by <b>Kunal Ambasta</b>—a Mechanical Engineer (B.Tech with Distinction), Computational Neuroscience Researcher, and STEM Educator based in Jharkhand, India. Inspired by a personal mission to build affordable assistive technology for his father, Kunal engineered <b>KAYA-NeuroSync</b>, an indigenous offline Edge-AI Brain-Computer Interface recognized globally.
+      </p>
+      <p style="color:#94a3b8; font-size:14px;">
+        Our mission at ioPUZZLE is to bridge textbook CBSE Science and Mathematics with frugal hardware engineering and artificial intelligence—empowering every student to become a real-world problem solver.
+      </p>
+      <div class="badges">
+        <span class="badge-item">🏆 National Winner – Smart India Hackathon</span>
+        <span class="badge-item">🎓 MIT Innovation Leadership Alumnus</span>
+        <span class="badge-item">🔬 Harvard Medical School NJAM & London BRAIN Presenter (2026)</span>
+        <span class="badge-item">🏛️ Former Community Innovator Fellow – ACIC IIT (ISM) Dhanbad</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p><b>ioPUZZLE (Input-Output Puzzle)</b> • Empowering Young Innovators across India & Beyond</p>
+    <p style="margin-top:8px;">
+      Official Contact: <a href="mailto:support@iopuzzle.com">support@iopuzzle.com</a> |
+      <a href="#about">About Us</a> |
+      <a href="/privacy.html">Privacy Policy</a>
+    </p>
+    <p style="margin-top:15px; font-size:12px;">© 2026 ioPUZZLE.com. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function runSim() {
+      const t = parseFloat(document.getElementById('echoSlider').value);
+      const div = parseFloat(document.getElementById('divisor').value) || 1;
+      document.getElementById('timeVal').innerText = t + " µs";
+      document.getElementById('codeTime').innerText = t;
+      const actual = (0.034 * t) / 2;
+      const calculated = (0.034 * t) / div;
+      document.getElementById('realDist').innerText = actual.toFixed(1) + " cm";
+      document.getElementById('calcDist').innerText = calculated.toFixed(1) + " cm";
+      const status = document.getElementById('statusBox');
+      if (div !== 2) {
+        status.style.background = "#7f1d1d";
+        status.style.color = "#fecaca";
+        status.innerText = "⚠️ MATH BUG! Sound travels to the obstacle AND back. Change the yellow box in the code to 2!";
+      } else if (calculated < 50) {
+        status.style.background = "#ca8a04";
+        status.style.color = "#fef08a";
+        status.innerText = "🚨 OBSTACLE ALERT (< 50 cm)! Vibration Motor ACTIVATED! Science + Math + Code Verified ✅";
+      } else {
+        status.style.background = "#14532d";
+        status.style.color = "#bbf7d0";
+        status.innerText = "✅ FORMULA CORRECT! Path is Safe (" + calculated.toFixed(1) + " cm). Drag Echo Time slider left (< 2900 µs) to test the alarm!";
+      }
+    }
+    runSim();
+  </script>
+</body>
+</html>
