@@ -47,7 +47,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 12px 5%;
+      padding: 10px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -58,14 +58,13 @@
       gap: 12px;
       text-decoration: none;
     }
+    /* Transparent dark-ready styling so white text in logo.PNG is 100% visible */
     .logo-img {
-      width: 44px;
-      height: 44px;
+      height: 58px;
+      width: auto;
       object-fit: contain;
-      background: #ffffff;
-      padding: 4px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(45, 212, 191, 0.35);
+      background: transparent;
+      filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.25));
     }
     .logo-text {
       font-size: 24px;
@@ -91,19 +90,21 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 65px 5% 50px;
+      padding: 55px 5% 50px;
       max-width: 1000px;
       margin: 0 auto;
     }
+    /* Large transparent showcase so both neural icon + white ioPUZZLE text shine */
     .hero-logo-Showcase {
-      width: 82px;
-      height: 82px;
+      height: 140px;
+      width: auto;
       object-fit: contain;
-      background: #ffffff;
-      padding: 8px;
+      background: rgba(22, 32, 50, 0.6);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      padding: 12px 24px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(45, 212, 191, 0.3);
-      margin-bottom: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(45, 212, 191, 0.2);
+      margin-bottom: 22px;
     }
     .pill {
       display: inline-block;
@@ -301,7 +302,7 @@
 </head>
 <body>
 
-  <!-- Navigation with Official Logo -->
+  <!-- Navigation with Official Transparent Logo -->
   <header>
     <a href="/" class="brand-link">
       <img src="logo.PNG" alt="ioPUZZLE Logo" class="logo-img">
@@ -320,6 +321,7 @@
     <div>
       <img src="logo.PNG" alt="ioPUZZLE Brain Circuit Logo" class="hero-logo-Showcase">
     </div>
+    <br>
     <span class="pill">🧩 Input-Output Puzzle • 100% True-STEM Portal</span>
     <h1>Where CBSE <span>Science & Math</span> Power Real-World <span>Coding & AI</span></h1>
     <p>Stop memorizing formulas blindly. Experience how every NCERT Science phenomenon and Math equation becomes Python code, sensor electronics, and Edge-AI engineering.</p>
